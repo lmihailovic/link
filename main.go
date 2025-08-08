@@ -13,7 +13,16 @@ func parseLinks(doc *html.Node) map[string]string {
 	for n := range doc.Descendants() {
 		var nodeText string
 		if n.Type == html.ElementNode && n.Data == "a" {
-			nodeText = strings.TrimSpace(n.FirstChild.Data)
+
+			for c := n.FirstChild; c != nil; c = c.NextSibling {
+				if c.Type == html.TextNode {
+					nodeText += strings.TrimSpace(c.Data)
+				} else if c.Type == html.ElementNode && c.FirstChild != nil {
+					nodeText += strings.TrimSpace(c.FirstChild.Data)
+				}
+			}
+
+			//nodeText += strings.TrimSpace(n.FirstChild.Data)
 			links[n.Attr[0].Val] = nodeText
 		}
 	}
