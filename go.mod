@@ -1,4 +1,4 @@
-module link-parser
+module link
 
 go 1.24
 
