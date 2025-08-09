@@ -1,4 +1,4 @@
-module link
+module github.com/lmihailovic/link
 
 go 1.24
 
