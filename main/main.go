@@ -2,7 +2,7 @@ package main
 
 import (
 	"fmt"
-	"github.com/lmihailovic/link/parse"
+	"github.com/lmihailovic/link"
 	"golang.org/x/net/html"
 	"os"
 )
