@@ -25,7 +25,11 @@ func Parse(doc *html.Node) map[string]string {
 		var nodeText string
 		if n.Type == html.ElementNode && n.Data == "a" {
 			nodeText = parseLinkChildrenText(n)
-			links[n.Attr[0].Val] = strings.TrimSpace(nodeText)
+			for _, attribute := range n.Attr {
+				if attribute.Key == "href" {
+					links[attribute.Val] = strings.TrimSpace(nodeText)
+				}
+			}
 		}
 	}
 	return links
