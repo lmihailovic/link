@@ -5,6 +5,7 @@ import (
 	"strings"
 )
 
+// parseLinkChildrenText recursively extracts and concatenates text content from all child nodes of the provided HTML node.
 func parseLinkChildrenText(p *html.Node) string {
 	var nodeText string
 
@@ -18,6 +19,8 @@ func parseLinkChildrenText(p *html.Node) string {
 	return nodeText
 }
 
+// Parse extracts all hyperlink references and their associated text content from the provided HTML document.
+// It returns a map where keys represent href attribute values, and values are the trimmed text content of the links.
 func Parse(doc *html.Node) map[string]string {
 	links := make(map[string]string)
 
